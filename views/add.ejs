@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        :root {
+            --background: #1a1a2e;
+            --color: #ffffff;
+            --primary-color: #0f3460;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Poppins", sans-serif;
+            background: var(--background);
+            background-image: url("./logo-color.png");
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-repeat: no-repeat;
+            background-size: 70%;
+            background-attachment: fixed;
+            background-position: center;
+            z-index: -2;
+            color: var(--color);
+            letter-spacing: 1px;
+            transition: background 0.2s ease;
+            background-color: #0A1627;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--color);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .login-container {
+            position: relative;
+            width: 500px; /* Increased width for the form container */
+        }
+
+        .form-container {
+            border: 1px solid hsla(0, 0%, 65%, 0.158);
+            box-shadow: 0 0 36px 1px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            backdrop-filter: blur(20px);
+            z-index: 99;
+            padding: 2rem;
+            max-width: 100%;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .login-container form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .login-container form input,
+        .login-container form textarea,
+        .login-container form select,
+        .login-container form button {
+            display: block;
+            padding: 14.5px;
+            width: 100%;
+            margin: 1rem 0;
+            color: var(--color);
+            outline: none;
+            background-color: #9191911f;
+            border: none;
+            border-radius: 5px;
+            font-weight: 500;
+            letter-spacing: 0.8px;
+            font-size: 15px;
+            backdrop-filter: blur(15px);
+            grid-column: span 2; /* Make elements span both columns by default */
+        }
+
+        .login-container form input:focus,
+        .login-container form textarea:focus,
+        .login-container form select:focus,
+        .login-container form button:focus {
+            box-shadow: 0 0 16px 1px rgba(0, 0, 0, 0.2);
+            animation: wobble 0.3s ease-in;
+        }
+        option{
+            color: var(--color);
+            background-color: #9191911f;
+        }
+        .login-container form input[type="text"]:nth-child(1),
+        .login-container form input[type="text"]:nth-child(2) {
+            grid-column: span 1; /* Make Name and Price inputs occupy separate columns */
+        }
+
+        .login-container form input[type="file"],
+        .login-container form select {
+            grid-column: span 1; /* Make File and Category inputs occupy separate columns */
+        }
+
+        .login-container form textarea {
+            grid-column: span 2; /* Make Description textarea span both columns */
+        }
+
+        .login-container form button {
+            background-color: palevioletred;
+            color: var(--color);
+            padding: 13px;
+            border-radius: 5px;
+            font-size: 18px;
+            letter-spacing: 1.5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.1s ease-in-out;
+            border: none;
+        }
+
+        .login-container form button:hover {
+            box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.15);
+            transform: scale(1.02);
+        }
+
+        .login-container form select {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-chevron-down" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>');
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 16px;
+        }
+
+        .circle {
+            width: 8rem;
+            height: 8rem;
+            background-color: palevioletred;
+            border-radius: 50%;
+            position: absolute;
+        }
+
+        .illustration {
+            position: absolute;
+            top: -14%;
+            right: -2px;
+            width: 90%;
+        }
+
+        .circle-one {
+            top: 0;
+            left: 0;
+            z-index: -1;
+            transform: translate(-45%, -45%);
+        }
+
+        .circle-two {
+            bottom: 0;
+            right: 0;
+            z-index: -1;
+            transform: translate(45%, 45%);
+        }
+
+        .register-forget {
+            margin: 1rem 0;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .opacity {
+            opacity: 0.6;
+        }
+        button{
+            background-color: palevioletred;
+        }
+
+        .theme-btn-container {
+            position: absolute;
+            left: 0;
+            bottom: 2rem;
+        }
+
+        .theme-btn {
+            cursor: pointer;
+            transition: all 0.3s ease-in;
+        }
+
+        .theme-btn:hover {
+            width: 40px !important;
+        }
+        form .category .dropdown-menu {
+            padding: 0px 0px;
+            border-radius: 0px;
+        }
+        form .category .dropdown-menu .dropdown-item {
+            padding: 8px 16px;
+            font-size: 14px;
+        }
+        form .category .dropdown-menu .dropdown-item  {
+            width: 20px;
+            text-align: center;
+            color: #2874f0;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <section class="container">
+        <div class="login-container">
+            <div class="circle circle-one"></div>
+            <div class="form-container">
+                <img src="https://raw.githubusercontent.com/hicodersofficial/glassmorphism-login-form/master/assets/illustration.png" alt="illustration" class="illustration" />
+                <h1 class="opacity">ADD PRODUCT</h1>
+                <form action="/add" method="post" enctype="multipart/form-data">
+                    <input type="text" name="name" placeholder="NAME" required />
+                    <input type="text" name="price" placeholder="PRICE" required />
+                    <input type="file" name="pic"  multiple/>
+                    <select name="category" required>
+                        <div class="dropdown-menu">
+                        <option value="" disabled selected>CATEGORY</option>
+                        <option value="men" class="dropdown-item">MEN</option>
+                        <option value="women"class="dropdown-item">WOMEN</option>
+                        <option value="new"class="dropdown-item">NEW ARRIVALS</option>
+                        <option value="kids"class="dropdown-item">KIDS</option>
+                        <option value="electronics"class="dropdown-item">ELECTRONICS</option>
+                    </div>
+                    </select>
+                    <textarea name="desc" placeholder="DESCRIPTION" required></textarea>
+                    <button class="opacity">SUBMIT</button>
+                </form>
+            </div>
+            <div class="circle circle-two"></div>
+        </div>
+    </section>
+</body>
+</html>

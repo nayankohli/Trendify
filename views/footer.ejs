@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Footer at Bottom</title>
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <style>
+        .context-dark, .bg-gray-dark, .bg-primary {
+            color: #fff;
+        }
+        .footer-classic a, .footer-classic a:focus, .footer-classic a:active {
+            color: #fff;
+        }
+        h5{
+            font-weight: 900;
+            color:#FE0039;
+            font: bold;
+        }
+        .nav-list li {
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+        .nav-list li a:hover:before {
+            margin-left: 0;
+            opacity: 1;
+            visibility: visible;
+        }
+        ul, ol {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .social-inner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            padding: 23px;
+            font: 900 13px/1 "Lato", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0);
+        }
+        .social-container .col {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .nav-list li a:before {
+            content: "\f14f";
+            font: 400 21px/1 "Material Design Icons";
+            color: #4d6de6;
+            display: inline-block;
+            vertical-align: baseline;
+            margin-left: -28px;
+            margin-right: 7px;
+            opacity: 0;
+            visibility: hidden;
+            transition: .22s ease;
+        }
+        .content-wrapper {
+            display: flex;
+            flex-direction: column;
+            /* min-height: 100vh; */
+            margin-bottom: 0;
+            margin-top: 0;
+        }
+        .content {
+            flex: 1;
+            margin-top: 0px;
+            margin-bottom: 0px;
+        }
+        footer {
+            padding:20px;
+            background: #ddd;
+            margin-bottom: 0;
+        }
+        .footer-classic {
+            position:relative;
+    background-color: rgba(255,255,255,0.13);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 0px; /* Increase margin */
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255,255,255,0.1);
+    box-shadow: 0 0 40px rgba(8,7,16,0.6);
+    padding:20px; /* Adjust the transparency as needed */
+    font-family: cursive;
+        }
+        .brand-logo-light{
+            border: 5px solid #FE0039;
+        }
+        .strip {
+            background: linear-gradient(to right, #FE0039, #ff741d);
+            height: 20px;
+             /* Add negative top margin to overlap with footer */
+        }
+    </style>
+</head>
+<body>
+    <div class="content-wrapper">
+        <div class="content">
+            <!-- Your main content goes here -->
+        </div>
+        <footer class="section footer-classic context-dark bg-image">
+            <div class="container">
+                <div class="row row-30">
+                    <div class="col-md-4 col-xl-5">
+                        <div class="pr-xl-4">
+                            <a class="brand" href="/"><img class="brand-logo-light" src="./logo-black.png" alt="" max-width="70px" max-height="70px" srcset="images/agency/logo-retina-inverse-280x74.png 2x"></a>
+                            <p>We are an award-winning creative agency, dedicated to the best result in web design, promotion, business consulting, and marketing.</p>
+                            <!-- Rights-->
+                            <p class="rights"><span>© </span><span class="copyright-year">2018</span><span> </span><span>Waves</span><span>. </span><span>All Rights Reserved.</span></p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <h5>Contacts</h5>
+                        <dl class="contact-list">
+                            <dt>Address:</dt>
+                            <dd>798 South Park Avenue, Jaipur, Raj</dd>
+                        </dl>
+                        <dl class="contact-list">
+                            <dt>Email:</dt>
+                            <dd><a href="mailto:#">dkstudioin@gmail.com</a></dd>
+                        </dl>
+                        <dl class="contact-list">
+                            <dt>Phones:</dt>
+                            <dd><a href="tel:#">https://karosearch.com</a> <span>or</span> <a href="tel:#">https://karosearch.com</a></dd>
+                        </dl>
+                    </div>
+                    <div class="col-md-4 col-xl-3">
+                        <h5>Links</h5>
+                        <ul class="nav-list">
+                            <li><a href="#">About</a></li>
+                            <li><a href="#">Projects</a></li>
+                            <li><a href="#">Blog</a></li>
+                            <li><a href="#">Contacts</a></li>
+                            <li><a href="#">Pricing</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row no-gutters social-container">
+                <div class="col"><a class="social-inner" href="#"><span class="icon mdi mdi-facebook"></span><span>Facebook</span></a></div>
+                <div class="col"><a class="social-inner" href="#"><span class="icon mdi mdi-instagram"></span><span>Instagram</span></a></div>
+                <div class="col"><a class="social-inner" href="#"><span class="icon mdi mdi-twitter"></span><span>Twitter</span></a></div>
+                <div class="col"><a class="social-inner" href="#"><span class="icon mdi mdi-youtube-play"></span><span>Google</span></a></div>
+            </div>
+        </footer>
+    </div>
+    <div class="strip" style="background-color: #FE0039; height: 20px;"></div>
+</body>
+</html>

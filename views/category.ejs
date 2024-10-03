@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" href="/css/all.min.css"> <!-- Font Awesome CSS -->
+  <link rel="stylesheet" href="/css/styles.css"> 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-WJ5zFGpLqYgsa62uRg2P6Xszpsk1cM/jzNKHzxoUGK5Te2SdDufNwkqj5OEx59upj9JtnMO0t9nN2/xDxSZJjA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-WJ5zFGpLqYgsa62uRg2P6Xszpsk1cM/jzNKHzxoUGK5Te2SdDufNwkqj5OEx59upj9JtnMO0t9nN2/xDxSZJjA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+ 
+    <style>
+        body {
+            margin: 0;
+            font-family:cursive;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            background-color: rgb(22, 20, 24);
+            color: #eee;
+            user-select: none;
+        }
+
+        #mainBody {
+            position: relative;
+            font-family: "Inter", sans-serif;
+            text-align: center;
+            background-color: #0A1627; /* Updated background color */
+            color: white;
+        }
+        #mainBody::before {
+            background-image: url("./logo-color.png");
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-repeat: no-repeat;
+            background-size: 70%; /* Ensures the background image covers the entire body */
+            background-attachment: fixed; /* Fixes the background image in place */
+            background-position: center; /* Centers the background image */
+            z-index: -2;
+        }
+        #mainBody::after {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+            z-index: -1; /* Ensure this overlay is behind the content but in front of the background image */
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px; /* Space between the cards */
+            padding: 20px;
+            font-family: cursive;
+        }
+        .product {
+            background-color: rgba(144, 55, 156, 0.134);
+            border-radius: 10px;
+            padding: 20px;
+            width: 27%; /* Adjust width to fit four cards in a row */
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+            margin: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+            transition: .5s all;
+        }
+        /* .product::before {
+            position: absolute;
+            content: "";
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: rgba(255, 255, 255, 0);
+            z-index: 1;
+            transition: background 0.5s;
+        }
+        .product:hover::before {
+            background: rgba(255, 255, 255, 0.07);
+        } */
+        .product:hover {
+            border: 2px solid rgba(255, 255, 255, 0.051);
+            box-shadow: 0 7px 50px 10px #000000aa;
+        }
+        .content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            z-index: 2; /* Ensures content is above the overlay */
+        }
+        .product img {
+            max-height: 100%;
+            max-width: 100%;
+            border-radius: 10px;
+        }
+        .product h3, .product h5 {
+            margin: 10px 0;
+        }
+        .product .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px; /* Space between the buttons */
+        }
+        .product button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .product .heart {
+            background-color: #0d3865;
+            color: white;
+        }
+        .product .cart {
+            background-color: #15a25c;
+            color: #ffffff;
+        }
+        .product .heart:hover {
+            background-color: #ffffff;
+            color: #0d3865;
+        }
+        .product .cart:hover {
+            background-color: #ffffff;
+            color: #15a25c;
+        }
+        #filter{
+            background-color: rgba(255, 255, 255, 0.073);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+            padding: 20px;
+            margin-bottom: 40px;
+            border-radius: 5px;
+        }
+        #filter h5{
+            color: #FE0039;
+            font-weight: bold;
+            font-size: 30px;
+        }
+        .product a{
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body id="mainBody">
+    <%- include("./header.ejs") %>
+    <div class="container-fluid pt-5" style="font-family: cursive;">
+        <div class="row px-xl-5">
+            <!-- Shop Sidebar Start -->
+            <div class="col-lg-3 col-md-12" id="filter">
+                <!-- Price Start -->
+                <div class="border-bottom mb-4 pb-4">
+                    <h5 class="font-weight-semi-bold mb-4">Filter by price</h5>
+                    <form>
+                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                            <input type="checkbox" class="custom-control-input" checked="" id="price-all">
+                            <label class="custom-control-label" for="price-all">All Price</label>
+                            <span class="badge border font-weight-normal">1000</span>
+                        </div>
+                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                            <input type="checkbox" class="custom-control-input" id="price-1">
+                            <label class="custom-control-label" for="price-1">$0 - $100</label>
+                            <span class="badge border font-weight-normal">150</span>
+                        </div>
+                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                            <input type="checkbox" class="custom-control-input" id="price-2">
+                            <label class="custom-control-label" for="price-2">$100 - $200</label>
+                            <span class="badge border font-weight-normal">295</span>
+                        </div>
+                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                            <input type="checkbox" class="custom-control-input" id="price-3">
+                            <label class="custom-control-label" for="price-3">$200 - $300</label>
+                            <span class="badge border font-weight-normal">246</span>
+                        </div>
+                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                            <input type="checkbox" class="custom-control-input" id="price-4">
+                            <label class="custom-control-label" for="price-4">$300 - $400</label>
+                            <span class="badge border font-weight-normal">145</span>
+                        </div>
+                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between">
+                            <input type="checkbox" class="custom-control-input" id="price-5">
+                            <label class="custom-control-label" for="price-5">$400 - $500</label>
+                            <span class="badge border font-weight-normal">168</span>
+                        </div>
+                    </form>
+                </div>
+                <!-- Price End -->
+                
+                <!-- Color Start -->
+                <div class="border-bottom mb-4 pb-4">
+                    <h5 class="font-weight-semi-bold mb-4">Filter by color</h5>
+                    <form>
+                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                            <input type="checkbox" class="custom-control-input" checked="" id="color-all">
+                            <label class="custom-control-label" for="price-all">All Color</label>
+                            <span class="badge border font-weight-normal">1000</span>
+                        </div>
+                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                            <input type="checkbox" class="custom-control-input" id="color-1">
+                            <label class="custom-control-label" for="color-1">Black</label>
+                            <span class="badge border font-weight-normal">150</span>
+                        </div>
+                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                            <input type="checkbox" class="custom-control-input" id="color-2">
+                            <label class="custom-control-label" for="color-2">White</label>
+                            <span class="badge border font-weight-normal">295</span>
+                        </div>
+                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                            <input type="checkbox" class="custom-control-input" id="color-3">
+                            <label class="custom-control-label" for="color-3">Red</label>
+                            <span class="badge border font-weight-normal">246</span>
+                        </div>
+                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                            <input type="checkbox" class="custom-control-input" id="color-4">
+                            <label class="custom-control-label" for="color-4">Blue</label>
+                            <span class="badge border font-weight-normal">145</span>
+                        </div>
+                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between">
+                            <input type="checkbox" class="custom-control-input" id="color-5">
+                            <label class="custom-control-label" for="color-5">Green</label>
+                            <span class="badge border font-weight-normal">168</span>
+                        </div>
+                    </form>
+                </div>
+                <!-- Color End -->
+
+                <!-- Size Start -->
+                <div class="mb-5">
+                    <h5 class="font-weight-semi-bold mb-4">Filter by size</h5>
+                    <form>
+                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                            <input type="checkbox" class="custom-control-input" checked="" id="size-all">
+                            <label class="custom-control-label" for="size-all">All Size</label>
+                            <span class="badge border font-weight-normal">1000</span>
+                        </div>
+                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                            <input type="checkbox" class="custom-control-input" id="size-1">
+                            <label class="custom-control-label" for="size-1">XS</label>
+                            <span class="badge border font-weight-normal">150</span>
+                        </div>
+                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                            <input type="checkbox" class="custom-control-input" id="size-2">
+                            <label class="custom-control-label" for="size-2">S</label>
+                            <span class="badge border font-weight-normal">295</span>
+                        </div>
+                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                            <input type="checkbox" class="custom-control-input" id="size-3">
+                            <label class="custom-control-label" for="size-3">M</label>
+                            <span class="badge border font-weight-normal">246</span>
+                        </div>
+                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                            <input type="checkbox" class="custom-control-input" id="size-4">
+                            <label class="custom-control-label" for="size-4">L</label>
+                            <span class="badge border font-weight-normal">145</span>
+                        </div>
+                        <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between">
+                            <input type="checkbox" class="custom-control-input" id="size-5">
+                            <label class="custom-control-label" for="size-5">XL</label>
+                            <span class="badge border font-weight-normal">168</span>
+                        </div>
+                    </form>
+                </div>
+                <!-- Size End -->
+            </div>
+            <!-- Shop Sidebar End -->
+
+
+            <!-- Shop Product Start -->
+            <div class="col-lg-9 col-md-12">
+                <div class="row pb-3">
+                    <div class="col-12 pb-1" >
+                        <div class="d-flex align-items-center justify-content-between mb-4">
+                            <form action="">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Search by name">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text bg-transparent text-primary">
+                                            <i class="fa fa-search"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </form>
+                            <div class="dropdown ml-4">
+                                <button class="btn border dropdown-toggle" type="button" id="triggerId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Sort by
+                                        </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container">
+                    <% data.forEach(ele => { %>
+                            <div class="product">
+                                <a href="/details/<%=ele._id%>" style="text-decoration: none;">
+                                <div class="content">
+                                    <img src="<%= ele.pic %>" alt="<%= ele.name %>">
+                                    <h3><%= ele.name %></h3>
+                                    <h5><i class="fa-solid fa-indian-rupee-sign"></i> <%= ele.price %></h5>
+                                    <div class="button-container">
+                                        <form action="/addToCart" method="post">
+                                            <button class="cart"><i class="fa-solid fa-cart-shopping"></i>  Add to cart</button>
+                                        </form>
+                                        <form action="/wishlist" method="post">
+                                            <button class="heart"><i class="fa-solid fa-heart"></i>  Wishlist</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </a>
+                            </div>
+                     <% }) %>
+                    </div>
+                </div>
+            </div>
+            <!-- Shop Product End -->
+        </div>
+    </div>
+    
+    <%- include("./footer.ejs") %>
+</body>
+</html>

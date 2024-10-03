@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #mainBody {
+            position: relative;
+            font-family: "Inter", sans-serif;
+            text-align: center;
+            background-color: #0A1627; /* Updated background color */
+            color: white;
+        }
+        #mainBody::before {
+            background-image: url("./logo-color.png");
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-repeat: no-repeat;
+            background-size: 70%; /* Ensures the background image covers the entire body */
+            background-attachment: fixed; /* Fixes the background image in place */
+            background-position: center; /* Centers the background image */
+            z-index: -2;
+        }
+        #mainBody::after {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%; /* Semi-transparent black overlay */
+            z-index: -1; /* Ensure this overlay is behind the content but in front of the background image */
+        }
+        /* #mainBody::after,
+        #mainBody::before { 
+            background-color: rgba(255, 255, 255, 0.3); 
+        } */
+    </style>
+</head>
+<body id="mainBody">
+    <%- include("./header.ejs") %>
+    <%- include("./footer.ejs") %>
+</body>
+</html>
